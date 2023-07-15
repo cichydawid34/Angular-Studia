@@ -1,0 +1,22 @@
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1em;
+    padding: 4em;
+  }
+</style>
+<form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+  <h2>Register</h2>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input type="text" id="login" formControlName="login" matInput />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input type="password" id="password" formControlName="password" matInput />
+  </mat-form-field>
+
+  <button mat-button color="primary" type="submit">Submit</button>
+</form>

@@ -1,0 +1,92 @@
+<style>
+  .main {
+    justify-content: center;
+    margin: 40px;
+  }
+  .header {
+    display: flex;
+  }
+  .button-container {
+    display: flex;
+    margin-left: auto;
+    gap: 10px;
+    justify-content: right;
+    text-align: center;
+    height: 80%;
+    margin-right: 50px;
+  }
+  .button-delete {
+    padding: 5px;
+    border-radius: 3px;
+    font-weight: bold;
+    background-color: red;
+    color: white;
+  }
+  .button-edit {
+    padding: 5px;
+    border-radius: 3px;
+    font-weight: bold;
+    background-color: rgb(247, 196, 69);
+    color: white;
+  }
+  .button-add {
+    width: 120px;
+    padding: 5px;
+    border-radius: 3px;
+    font-weight: bold;
+    background-color: rgb(4, 112, 13);
+    color: white;
+  }
+  .button-add:hover {
+    transform: scale(105%);
+  }
+  h3 {
+    font-weight: bold;
+  }
+  .button-delete:hover {
+    transform: scale(105%);
+  }
+  .button-edit:hover {
+    transform: scale(105%);
+  }
+  .functionalities-container {
+    margin-top: 12px;
+    width: 40em;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .functionality {
+    border: 1px solid black;
+    border-radius: 3px;
+    font-weight: bold;
+    padding-left: 15px;
+  }
+  .functionality:hover {
+    border: 1px solid grey;
+  }
+</style>
+
+<div class="main">
+  <div class="header">
+    <h2>{{ project.name }}</h2>
+    <div class="button-container">
+      <div class="button-delete" (click)="deleteProject()">Delete Project</div>
+      <div class="button-edit">Edit Project</div>
+    </div>
+  </div>
+  <p>{{ project.description }}</p>
+  <h3>Functionalities</h3>
+  <div class="button-add" (click)="addForm()">Add Functionality</div>
+  <div class="functionalities-container">
+    <div
+      *ngFor="let functionality of functionalities"
+      class="functionality"
+      [routerLink]="
+        '/projects/' + project.id + '/functionalities/' + functionality.id
+      "
+    >
+      {{ functionality.name }}
+    </div>
+  </div>
+</div>

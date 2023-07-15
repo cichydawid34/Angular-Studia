@@ -1,0 +1,136 @@
+<style>
+  .task-container {
+    width: 400px;
+    max-width: 100%;
+    margin: 0 25px 25px 0;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .task-list {
+    min-height: 60px;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+    min-height: 200px;
+  }
+
+  .task {
+    padding: 20px 10px;
+    border-bottom: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: move;
+    background: white;
+    font-size: 14px;
+    border: 1px solid black;
+  }
+
+  .cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+      0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .example-box:last-child {
+    border: none;
+  }
+
+  .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  .add-button {
+    width: 250px;
+    margin-right: 55px;
+    margin-left: auto;
+    margin-top: 20px;
+    margin-bottom: auto;
+    border-radius: 3px;
+    justify-self: center;
+    border: 3px solid black;
+    padding: 6px;
+    font-size: 17px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+  }
+  .add-button:hover {
+    color: black;
+    background-color: white;
+    border: 3px solid black;
+  }
+  .todo {
+    border-bottom: 4px solid red;
+  }
+  .doing {
+    border-bottom: 4px solid goldenrod;
+  }
+  .done {
+    border-bottom: 4px solid green;
+  }
+</style>
+<div>
+  <div class="example-container">
+    <div class="add-button" (click)="addForm()">New Task</div>
+    <div class="task-container">
+      <h2 class="todo">Todo</h2>
+      <div
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[doneList, doingList]"
+        class="task-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="task" *ngFor="let task of todo" cdkDrag>
+          {{ task.name }}
+        </div>
+      </div>
+    </div>
+
+    <div class="task-container">
+      <h2 class="doing">Doing</h2>
+      <div
+        cdkDropList
+        #doingList="cdkDropList"
+        [cdkDropListData]="doing"
+        [cdkDropListConnectedTo]="[todoList, doneList]"
+        class="task-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="task" *ngFor="let task of doing" cdkDrag>
+          {{ task.name }}
+        </div>
+      </div>
+    </div>
+    <div class="task-container">
+      <h2 class="done">Done</h2>
+      <div
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="done"
+        [cdkDropListConnectedTo]="[todoList, doingList]"
+        class="task-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="task" *ngFor="let task of done" cdkDrag>
+          {{ task.name }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

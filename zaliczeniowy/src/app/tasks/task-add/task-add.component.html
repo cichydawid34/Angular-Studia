@@ -1,0 +1,18 @@
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1em;
+    padding: 4em;
+  }
+</style>
+
+<form [formGroup]="taskForm" (ngSubmit)="submitForm()">
+  <h2>New Task</h2>
+  <mat-form-field>
+    <mat-label>Name of Task</mat-label>
+    <input type="text" id="name" formControlName="name" matInput />
+  </mat-form-field>
+
+  <button mat-button color="primary" type="submit">Submit</button>
+</form>
