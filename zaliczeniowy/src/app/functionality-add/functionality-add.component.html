@@ -1,17 +1,18 @@
-<style>
-  form {
-    display: flex;
-    flex-direction: column;
-    padding-top: 1em;
-    padding: 4em;
-  }
-</style>
+<style></style>
 
 <form [formGroup]="functionalityForm" (ngSubmit)="submitForm()">
   <h2>New Functionality</h2>
   <mat-form-field>
     <mat-label>Name of Functionality</mat-label>
     <input type="text" id="name" formControlName="name" matInput />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Priority</mat-label>
+    <mat-select formControlName="priority" placeholder="Select priority">
+      <mat-option value="high">High</mat-option>
+      <mat-option value="medium">Medium</mat-option>
+      <mat-option value="low">Low</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <button mat-button color="primary" type="submit">Submit</button>

@@ -1,0 +1,21 @@
+<style></style>
+
+<form [formGroup]="projectForm" (ngSubmit)="submitForm()">
+  <h2>Edit Project</h2>
+  <mat-form-field>
+    <mat-label>Name of Project</mat-label>
+    <input type="text" id="name" formControlName="name" matInput />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input
+      type="text"
+      id="description"
+      formControlName="description"
+      matInput
+    />
+  </mat-form-field>
+
+  <button mat-button color="primary" type="submit">Submit</button>
+</form>
